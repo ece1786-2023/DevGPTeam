@@ -23,6 +23,18 @@ PM_GPT_SYSTEM_CONTEXT="""Role: You are a project manager specializing in mini-ga
 
 Avoid discussing technical details with the client in the earlier steps. Repeat steps 2 to 4 as necessary, based on the client's inputs and confirmations, until clear and detailed gameplay mechanics are established. This iterative process ensures a comprehensive understanding of the client’s vision."""
 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
 def extract_req(text):
     start_marker = "<REQ_START>"
     end_marker = "<REQ_END>"
@@ -47,7 +59,7 @@ def refine_requirements(initial_requirement):
         {"role": "system", "content": PM_GPT_SYSTEM_CONTEXT},
         {"role": "user", "content": initial_requirement}
     ]
-    print("user: " + initial_requirement)
+    print(color.BOLD + color.GREEN + "user: " + color.END + initial_requirement)
     while True:
         response = utilities.call_openai_api_PM(messages, model="gpt-4-1106-preview")
         messages.append({"role": "assistant", "content": response})        
@@ -56,10 +68,10 @@ def refine_requirements(initial_requirement):
         if "<REQ_START>" in response:
             refined_requirement = extract_req(response)
             break
-        print("assistant: " + response)
+        print(color.BOLD + color.YELLOW + "assistant: " + color.END + response)
         
         # else, continue iteration
-        user_input = input("user: ")
+        user_input = input(color.BOLD + color.GREEN + "user: " + color.END)
         messages.append({"role": "user", "content": user_input})
 
     return refined_requirement
