@@ -93,7 +93,7 @@ def generate_code(refined_requirement):
 
     print(refined_requirement + "\n" + additional_requirement)
 
-    response = utilities.call_openai_api_DEV(DEV_GPT_SYSTEM_CONTEXT_V3, refined_requirement + "\n" + additional_requirement, 0.3, 0.3)
+    response = utilities.call_openai_api_DEV(DEV_GPT_SYSTEM_CONTEXT_V3, refined_requirement + "\n" + additional_requirement, 0.3, 0.3, model="gpt-4-1106-preview")
     code_string = response.choices[0].message.content
     
     print(response.choices[0].message.content)
