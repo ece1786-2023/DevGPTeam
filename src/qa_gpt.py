@@ -1,14 +1,19 @@
-import json
-import os
 import utilities
 
 QA_GPT_SYSTEM_CONTEXT2="""Your role is a professional quality assurance engineer for Python and Pygame mini-games. You will be provided with a list of requirements and some codes. you need to review the code for gameplay functionality, correct display and graphics, and then generate the complete final code in this structured format:
- <FILE_START>
+<PROJECT_NAME_START><PROJECT_NAME_END>
+<FILE_START>
 GENERATED_FILE_NAME
 ```python
 # your code here
 ```
-<FILE_END>.
+<FILE_END>
+<FILE_START>
+GENERATED_FILE_NAME
+```python
+# your code here
+```
+<FILE_END>
 """
 
 QA_GPT_SYSTEM_CONTEXT="""NOTICE
@@ -244,42 +249,6 @@ above are the requirement and source code, try you best to generate some unit te
 
 import os
 
-def parse_code(code_string):
-    # Get the directory of the main.py file
-    main_file_dir = os.path.dirname(os.path.abspath(__file__))
-
-    # Extract project name between the new tags
-    project_start_tag = "<PROJECT_NAME_START>"
-    project_end_tag = "<PROJECT_NAME_END>"
-    project_name_start = code_string.find(project_start_tag) + len(project_start_tag)
-    project_name_end = code_string.find(project_end_tag)
-    project_name = code_string[project_name_start:project_name_end].strip()
-
-    # Define the workspace path relative to the main.py file
-    project_workspace_path = os.path.join(main_file_dir, f'../workspace/{project_name}')
-
-    # Ensure the project workspace directory exists
-    os.makedirs(project_workspace_path, exist_ok=True)
-
-    # Split the string by the file start delimiter
-    file_sections = code_string.split("<FILE_START>")
-
-    for file_section in file_sections[1:]:  # Skip the first split as it's before the first FILE_START
-        # Further split by the file end delimiter
-        parts = file_section.split("<FILE_END>")
-        file_content = parts[0].strip()  # The file content (filename + code)
-
-        # Split each file content into filename and code
-        filename_and_code = file_content.split("```python\n", 1)
-        filename = filename_and_code[0].strip()
-        code = filename_and_code[1].strip("```\n").strip()
-
-        # Write the code to a file in the project workspace directory
-        file_path = os.path.join(project_workspace_path, filename)
-        with open(file_path, 'w') as file:
-            file.write(code)
-
-
 # src/qa_gpt.py
 def validate_code(generated_code):
     # In a real application, here you'd validate code using a GPT model.
@@ -289,13 +258,12 @@ def validate_code(generated_code):
     code_string = response.choices[0].message.content
     
     print(response.choices[0].message.content)
-    parse_code(code_string)
+    utilities.parse_code(code_string)
 
 
     print("No issues found in the generated code.\n")
 
 def code_review(requirement, generated_code):
-    print("Reveiwing code...\n")
     req_and_code = "Requirement:\n" + requirement + "Code to review:\n" + generated_code
     messages = [
         {"role": "system", "content": QA_GPT_SYSTEM_CONTEXT2},
@@ -304,143 +272,3 @@ def code_review(requirement, generated_code):
     response = utilities.call_openai_api_QA(messages, model="gpt-4-1106-preview")
     return response
 
-if __name__ == "__main__":
-    test_req = """# Flappy Bird-style arcade game for desktop
-```
-1. Implement bird character with gravity-affected flight mechanics.
-2. Create a continuous scroll of green pipe obstacles with variable heights and gaps.
-3. Increment score by one each time the bird successfully passes through a set of pipes.
-4. Use spacebar key press to control the bird's flapping and ascending motion.
-5. Detect collisions between the bird and pipes or ground to trigger game over.
-6. Start the game upon the first spacebar press after the game is launched.
-7. Display the current score during gameplay and final score upon game over.
-8. Allow the player to restart the game by pressing the spacebar after a game over screen is displayed.
-```"""
-    test_code = """import pygame
-import sys
-import random
-
-# Constants
-SCREEN_WIDTH = 400
-SCREEN_HEIGHT = 600
-GRAVITY = 0.25
-BIRD_FLAP_POWER = 5
-PIPE_SPEED = -3
-PIPE_WIDTH = 70
-PIPE_HEIGHT_DIFF = 150
-PIPE_GAP = 200
-BIRD_START_X = 50
-BIRD_START_Y = 300
-
-# Initialize Pygame
-pygame.init()
-
-# Set up the screen
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('Flappy Bird Clone')
-
-# Bird class
-class Bird(pygame.sprite.Sprite):
-    def __init__(self):
-        super().__init__()
-        self.image = pygame.Surface((30, 30))
-        self.image.fill((255, 255, 0))  # Yellow color
-        self.rect = self.image.get_rect(center=(BIRD_START_X, BIRD_START_Y))
-        self.velocity = 0
-
-    def update(self):
-        self.velocity += GRAVITY
-        self.rect.y += self.velocity
-
-    def flap(self):
-        self.velocity = -BIRD_FLAP_POWER
-
-# Pipe class
-class Pipe(pygame.sprite.Sprite):
-    def __init__(self, position, y_change):
-        super().__init__()
-        self.image = pygame.Surface((PIPE_WIDTH, SCREEN_HEIGHT))
-        self.image.fill((0, 255, 0))  # Green color
-        self.rect = self.image.get_rect()
-        if position == 'top':
-            self.rect.bottomleft = (SCREEN_WIDTH, y_change - PIPE_GAP // 2)
-        else:
-            self.rect.topleft = (SCREEN_WIDTH, y_change + PIPE_GAP // 2)
-
-    def update(self):
-        self.rect.x += PIPE_SPEED
-
-# Game class
-class Game:
-    def __init__(self):
-        self.bird = Bird()
-        self.pipes = pygame.sprite.Group()
-        self.all_sprites = pygame.sprite.Group(self.bird)
-        self.score = 0
-        self.game_active = False
-
-    def run(self):
-        clock = pygame.time.Clock()
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                    if not self.game_active:
-                        self.game_active = True
-                        self.pipes.empty()
-                        self.bird.rect.center = (BIRD_START_X, BIRD_START_Y)
-                        self.bird.velocity = 0
-                        self.score = 0
-                    self.bird.flap()
-
-            if self.game_active:
-                self.all_sprites.update()
-                self.manage_pipes()
-                self.check_collisions()
-                self.update_score()
-
-            self.draw()
-
-            clock.tick(60)
-
-    def manage_pipes(self):
-        for pipe in self.pipes:
-            if pipe.rect.right < 0:
-                self.pipes.remove(pipe)
-        if not self.pipes or self.pipes.sprites()[-1].rect.centerx < SCREEN_WIDTH // 2:
-            y_change = random.randint(PIPE_HEIGHT_DIFF, SCREEN_HEIGHT - PIPE_HEIGHT_DIFF)
-            top_pipe = Pipe('top', y_change)
-            bottom_pipe = Pipe('bottom', y_change)
-            self.pipes.add(top_pipe, bottom_pipe)
-            self.all_sprites.add(top_pipe, bottom_pipe)
-
-    def check_collisions(self):
-        if pygame.sprite.spritecollide(self.bird, self.pipes, False) or \
-           self.bird.rect.top <= 0 or \
-           self.bird.rect.bottom >= SCREEN_HEIGHT:
-
-    def update_score(self):
-        for pipe in self.pipes:
-            if pipe.rect.centerx < self.bird.rect.left and not pipe.passed:
-                pipe.passed = True
-                self.score += 1
-
-    def draw(self):
-        screen.fill((135, 206, 235))  # Light blue color for the sky
-        self.all_sprites.draw(screen)
-        self.draw_score()
-
-    def draw_score(self):
-            score_surface = pygame.font.Font(None, 36).render(str(self.score), True, (255, 255, 255))
-            score_rect = score_surface.get_rect(center=(SCREEN_WIDTH // 2, 50))
-        else:
-            game_over_surface = pygame.font.Font(None, 48).render(f'Game Over! Score: {self.score}', True, (255, 255, 255))
-            screen.blit(game_over_surface, game_over_rect)
-
-    game = Game()
-    game.run()
-"""
-    response = code_review(test_req, test_code)
-    print(response)
