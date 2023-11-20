@@ -28,7 +28,7 @@ def main():
         # QA GPT review code
         print(color.BOLD + color.PURPLE + "Reviewing code...\n" + color.END)
         finalized_code = qa_gpt.code_review(refined_requirement, generated_code)
-        print(color.BOLD + color.BLUE + "Code review feedback:\n" + finalized_code)
+        print(color.BOLD + color.BLUE + "Code review feedback:\n" + color.END + finalized_code)
     # write final code to workspace
     utilities.parse_code(finalized_code)
     print("Completed!!! Run the code in the workspace.")
