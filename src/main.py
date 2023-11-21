@@ -14,7 +14,7 @@ def main():
         else:
             print("Unknown argument")
     
-    print("Welcome to Dev GPTeam!")
+    print(color.BOLD + color.PURPLE + "Welcome to Dev GPTeam!" + color.END)
     initial_requirement = input(color.BOLD + color.YELLOW + "Assistant: " + color.END + "Please enter your initial requirement: " )
     # PM GPT clarifying requirements
     refined_requirement = pm_gpt.refine_requirements(initial_requirement)
@@ -31,7 +31,7 @@ def main():
         print(color.BOLD + color.BLUE + "Code review feedback:\n" + color.END + finalized_code)
     # write final code to workspace
     utilities.parse_code(finalized_code)
-    print("Completed!!! Run the code in the workspace.")
+    print(color.BOLD + color.PURPLE + "Completed!!! Run the code in the workspace." + color.END)
 
 if __name__ == "__main__":
     main()
