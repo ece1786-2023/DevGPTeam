@@ -1,0 +1,15 @@
+GPT input: 
+write code for Flappy Bird where you control a yellow bird continuously flying between a series of green pipes. The bird flaps every time you left click the mouse. If the bird falls to the ground or hits a pipe, you lose. This game goes on infinitely until you lose and you get points the further you go.
+
+Requirements:
+
+1. Bird Mechanics: The game must include a controllable bird character that continuously moves forward and falls due to gravity.
+2. User Interaction: The bird must flap (move upward) when the player left-clicks the mouse.
+3. Obstacle Generation: Green pipes as obstacles should be generated at regular intervals, with each pair having a gap in between to allow the bird to pass.
+4. Collision Detection: The game must detect and handle collisions between the bird and the pipes or the ground.
+5. Scoring System: The player should earn points based on distance traveled or the number of pipes successfully navigated.
+6. Game Over Condition: The game should end when the bird collides with a pipe or the ground, displaying a "Game Over" message.
+7. Infinite Looping: The game must create an illusion of endless gameplay by continuously generating pipes and moving the environment.
+8. User Interface: The game should display the current score and any relevant instructions or buttons (e.g., start, restart) on the screen.
+9. Difficulty Balance: The game’s difficulty should be balanced to be challenging but not impossible.
+10. Restart Mechanism: Provide an option to restart the game after a game over.

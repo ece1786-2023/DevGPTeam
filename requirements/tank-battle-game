@@ -1,0 +1,17 @@
+GPT input:
+create a tank battle game.
+
+Requirements:
+
+1. Game Initialization: The game starts with a player-controlled tank placed on a battlefield. Depending on the game mode, one or more AI-controlled enemy tanks are also placed on the battlefield.
+2. Player Tank Control: The player can move their tank forward and backward. The player can rotate their tank left and right to change the direction it is facing. The player can aim the tank's turret independently of the tank's body orientation. The player can fire projectiles from their tank's turret.
+3. AI Enemy Behavior: AI-controlled tanks should move around the battlefield, avoid obstacles, and seek the player. AI-controlled tanks should aim and fire at the player's tank with a certain level of intelligence and difficulty.
+4. Obstacles and Cover: The battlefield contains obstacles that tanks cannot pass through, such as buildings or terrain features. Tanks can use obstacles as cover from enemy fire.
+5. Health and Damage: Each tank has a health meter. Health is depleted when a tank is hit by a projectile. When a tank's health reaches zero, the tank is destroyed.
+6. Scoring System: The player earns points for each enemy tank they destroy. The score should be displayed on the screen.
+7. Ammunition and Reloading: The player's tank has a limited amount of ammunition and must reload after firing a certain number of shots. Reloading takes time during which the player cannot fire.
+8. Winning & Losing Condition: The player wins if they destroy all enemy tanks.The player loses if their tank is destroyed.
+9. Game Levels: The game can include multiple levels with increasing difficulty. New levels may introduce more enemy tanks, different types of enemy tanks, new obstacles, or different battlefield layouts.
+10. Power-ups: The battlefield can include power-ups that the player can collect to improve their tank's abilities temporarily (e.g., shield, rapid fire, health restoration).
+11. Pause and Resume: The player should be able to pause and resume the game.
+12. Game Over: When the game is over (win or lose), the player should be shown their final score and given the option to restart or exit.

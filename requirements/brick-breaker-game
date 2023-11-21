@@ -1,0 +1,14 @@
+GPT input:
+create a brick breaker game.
+
+Requirements:
+
+1. Brick Layout: The game must initialize with bricks arranged in a specific pattern (rows and columns) on the screen.
+2. Paddle Control: Players should be able to control the horizontal movement of a paddle using keyboard, mouse, or touch inputs.
+3. Ball Mechanics: A ball must bounce off walls, the paddle, and bricks, following proper physics for reflection angles.
+4. Brick Collision: When the ball collides with a brick, the brick should disappear, and the player's score should increase.
+5. Lives: The game should commence with several lives (the exact number can be predetermined or adjustable in settings). Each time the ball slips past the paddle and touches the bottom edge of the screen, the player loses one life.
+6. Game Over Condition: The game should end when either all bricks are broken (win) or the player loses all lives (lose).
+7. User Interface: The game should display the current score, number of lives, and any relevant instructions or buttons (e.g., start, restart).
+8. The movement speed of the ball and paddle should be adjusted to be within the limits of human reaction time, ensuring that the game remains challenging yet fair and playable.
+9. User Control: Players can initiate the game by either clicking the mouse or pressing a designated key on the keyboard, providing flexibility in starting the game based on their preference.

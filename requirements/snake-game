@@ -1,0 +1,16 @@
+GPT input:
+create a snake game.
+
+Requirements:
+
+1. Game Initialization: The game should start with a single-segment snake positioned randomly on the game board.
+2. Game Board: A defined playing area (game board) should be present. The size of the game board should be configurable or fit a standard window size.
+3. Snake Movement: The snake should move continuously in a straight line.
+4. Snake Movement 2: The player should be able to change the direction of the snake's movement using keyboard arrows or WASD keys.
+5. Snake Movement 3: The snake should move at a constant speed, which could increase as the game progresses.
+6. Food Mechanics: Food items should appear in random locations on the board.
+7. Food Mechanics 2: When the snake eats food, it should grow in length.
+8. Collision Detection: The game should detect when the snake collides with the wall or itself. A collision with the wall or the snake's body should end the game.
+9. Scoring System: The player should earn points for each food item the snake eats. The score should be displayed on the screen.
+10. Game Over: When the game ends, the player should be able to see their final score.
+11. Game Over2: There should be an option to restart the game after it ends.
