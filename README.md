@@ -17,10 +17,21 @@ Before running Dev GPTeam CLI, make sure you have Python 3.9 or higher installed
 
 ### Installation and Run
 
-1. Clone the repository to your local machine:
+Clone the repository to your local machine:
 
 ```
 cd DevGPTeam
 pip install -r requirements.txt
 python src/main.py
+```
+
+### Generate source code from a checkpoint file
+
+usage:
+`usage: main.py [-h] [--skipPM] [--skipDev] [--noQA] [--snapshot-directory SNAPSHOT_DIRECTORY]`
+
+example:
+
+```
+python src\main.py --skipPM --snapshot brick_breaker_game
 ```

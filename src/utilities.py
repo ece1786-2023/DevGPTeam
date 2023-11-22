@@ -29,6 +29,7 @@ def call_openai_api_DEV(system_context, user_prompt, top_p, temperature=1, model
 def call_openai_api_PM(messages, top_p=0.5, temperature=0.7, model="gpt-3.5-turbo-1106"):
     response = client.chat.completions.create(
         model=model,
+        #model="gpt-3.5-turbo-1106",
         messages=messages,
         top_p=top_p,
         temperature=temperature
@@ -39,6 +40,7 @@ def call_openai_api_PM(messages, top_p=0.5, temperature=0.7, model="gpt-3.5-turb
 def call_openai_api_QA(messages, top_p=0.1, temperature=0.1, model="gpt-3.5-turbo-1106"):
     response = client.chat.completions.create(
         model=model,
+        #model="gpt-3.5-turbo-1106",
         messages=messages,
         top_p=top_p,
         temperature=temperature
@@ -56,16 +58,21 @@ def call_openai_api_QA(messages, top_p=0.1, temperature=0.1, model="gpt-3.5-turb
         ret_response += response.choices[0].message.content
     return ret_response
 
-def parse_code(code_string):
-    # Get the directory of the main.py file
-    main_file_dir = os.path.dirname(os.path.abspath(__file__))
-
+def get_project_name(code_string):
     # Extract project name between the new tags
     project_start_tag = "<PROJECT_NAME_START>"
     project_end_tag = "<PROJECT_NAME_END>"
     project_name_start = code_string.find(project_start_tag) + len(project_start_tag)
     project_name_end = code_string.find(project_end_tag)
     project_name = code_string[project_name_start:project_name_end].strip()
+    
+    return project_name
+
+def parse_code(code_string):
+    # Get the directory of the main.py file
+    main_file_dir = os.path.dirname(os.path.abspath(__file__))
+
+    project_name = get_project_name(code_string)
 
     # Define the workspace path relative to the main.py file
     project_workspace_path = os.path.join(main_file_dir, f'../workspace/{project_name}')
@@ -90,6 +97,29 @@ def parse_code(code_string):
         file_path = os.path.join(project_workspace_path, filename)
         with open(file_path, 'w') as file:
             file.write(code)
+
+def take_project_info_snapshot(refine_requirements, developed_code, finalized_code):
+    # Get the directory of the main.py file
+    main_file_dir = os.path.dirname(os.path.abspath(__file__))
+
+    project_name = get_project_name(developed_code)
+
+    # Define the workspace path relative to the main.py file
+    project_workspace_path = os.path.join(main_file_dir, f'../workspace/{project_name}')
+
+    # Ensure the project workspace directory exists
+    os.makedirs(project_workspace_path, exist_ok=True)
+
+    data = {
+        'refine_requirements': refine_requirements,
+        'developed_code': developed_code,
+        'finalized_code': finalized_code
+    }
+
+    file_path = os.path.join(project_workspace_path, project_name + ".json")
+
+    with open(file_path, 'w') as file:
+        json.dump(data, file, indent=4)
 
 class color:
    PURPLE = '\033[95m'
