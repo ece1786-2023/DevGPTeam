@@ -12,6 +12,8 @@ def main():
     skip_dev = False
     skip_pm = False
     use_qa = True
+    refined_requirement = None
+    generated_code = None
 
     parser = argparse.ArgumentParser(description="Usage:")
 
@@ -34,7 +36,7 @@ def main():
         with open('workspace/{}/{}.json'.format(args.snapshot_directory, args.snapshot_directory), 'r') as file:
             project = json.load(file)
 
-    refined_requirement, generated_code = project["refine_requirements"], project["developed_code"]
+            refined_requirement, generated_code = project["refine_requirements"], project["developed_code"]
 
     print(color.BOLD + color.PURPLE + "Welcome to Dev GPTeam!" + color.END)
 
