@@ -14,6 +14,7 @@ def main():
     use_qa = True
     refined_requirement = None
     generated_code = None
+    snapshot_project_name = None
 
     parser = argparse.ArgumentParser(description="Usage:")
 
@@ -31,9 +32,10 @@ def main():
         print("Not Using QA")
 
     if args.snapshot_directory is not None:
-        print(f"snapshot path is set to: {args.snapshot_directory}")
+        snapshot_project_name = args.snapshot_directory
+        print(f"snapshot path is set to: {snapshot_project_name}")
 
-        with open('workspace/{}/{}.json'.format(args.snapshot_directory, args.snapshot_directory), 'r') as file:
+        with open('workspace/{}/{}.json'.format(snapshot_project_name, snapshot_project_name), 'r') as file:
             project = json.load(file)
 
             refined_requirement, generated_code = project["refine_requirements"], project["developed_code"]
@@ -65,8 +67,8 @@ def main():
         finalized_code = qa_gpt.code_review(refined_requirement, generated_code)
         print(color.BOLD + color.BLUE + "Code review feedback:\n" + color.END + finalized_code)
 
-    utilities.parse_code(generated_code)
-    utilities.take_project_info_snapshot(refined_requirement, generated_code, finalized_code)
+    utilities.parse_code(generated_code, snapshot_project_name)
+    utilities.take_project_info_snapshot(refined_requirement, generated_code, finalized_code, snapshot_project_name)
 
     print(color.BOLD + color.PURPLE + "Completed!!! Run the code in the workspace." + color.END)
 

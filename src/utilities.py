@@ -68,11 +68,12 @@ def get_project_name(code_string):
     
     return project_name
 
-def parse_code(code_string):
+def parse_code(code_string, project_name=None):
     # Get the directory of the main.py file
     main_file_dir = os.path.dirname(os.path.abspath(__file__))
 
-    project_name = get_project_name(code_string)
+    if not project_name:
+        project_name = get_project_name(code_string)
 
     # Define the workspace path relative to the main.py file
     project_workspace_path = os.path.join(main_file_dir, f'../workspace/{project_name}')
@@ -98,11 +99,12 @@ def parse_code(code_string):
         with open(file_path, 'w') as file:
             file.write(code)
 
-def take_project_info_snapshot(refine_requirements, developed_code, finalized_code):
+def take_project_info_snapshot(refine_requirements, developed_code, finalized_code, project_name=None):
     # Get the directory of the main.py file
     main_file_dir = os.path.dirname(os.path.abspath(__file__))
 
-    project_name = get_project_name(developed_code)
+    if not project_name:
+        project_name = get_project_name(developed_code)
 
     # Define the workspace path relative to the main.py file
     project_workspace_path = os.path.join(main_file_dir, f'../workspace/{project_name}')
