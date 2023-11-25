@@ -9,9 +9,6 @@ import utilities
 from utilities import color
 
 def main():
-    skip_dev = False
-    skip_pm = False
-    use_qa = True
     refined_requirement = None
     generated_code = None
     snapshot_project_name = None
@@ -21,15 +18,11 @@ def main():
     # Add arguments
     parser.add_argument("--skipPM", action="store_true", help="Disable PM GPT (Code Review)")
     parser.add_argument("--skipDev", action="store_true", help="Disable Dev GPT (Code Review)")
-    parser.add_argument("--noQA", action="store_true", help="Disable QA GPT (Code Review)")
+    parser.add_argument("--skipQA", action="store_true", help="Disable QA GPT (Code Review)")
     parser.add_argument("--snapshot-directory", type=str, help="Regenerate source code base on checkpoint file (.json)")
 
     # Parse arguments
     args = parser.parse_args()
-
-    if args.noQA:
-        use_qa = False
-        print("Not Using QA")
 
     if args.snapshot_directory is not None:
         snapshot_project_name = args.snapshot_directory
@@ -61,7 +54,10 @@ def main():
     print(color.BOLD + color.BLUE + "Generated code:\n" + color.END + generated_code)
 
     finalized_code = None 
-    if use_qa:
+
+    if args.skipQA:
+        print("Not Using QA")
+    else:
         # QA GPT review code
         print(color.BOLD + color.PURPLE + "Reviewing code...\n" + color.END)
         finalized_code = qa_gpt.code_review(refined_requirement, generated_code)
