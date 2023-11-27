@@ -106,6 +106,8 @@ def parse_code(code_string, project_name_suffix, project_name=None):
             file_path = os.path.join(project_workspace_path, filename)
             with open(file_path, 'w') as file:
                 file.write(code)
+    
+    return file_path
 
 
 def take_project_info_snapshot(refine_requirements, developed_code, finalized_code, project_name=None):
@@ -148,3 +150,7 @@ def print_message(msg):
     console = Console()
     md = Markdown(msg)
     console.print(md)
+
+def run_game(path):
+    cmd = "python \"" + path +"\""
+    os.system(cmd)

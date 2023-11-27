@@ -57,12 +57,12 @@ def main():
     utilities.print_message(generated_code)
 
     finalized_code = None 
-
+    game_path = None
     if args.skipQA:
         print("Not Using QA")
 
         # only Dev Write to dir
-        utilities.parse_code(generated_code, "", snapshot_project_name)   
+        game_path = utilities.parse_code(generated_code, "", snapshot_project_name)   
         utilities.take_project_info_snapshot(refined_requirement, generated_code, None, snapshot_project_name)
 
     else:
@@ -77,10 +77,11 @@ def main():
         utilities.print_message(finalized_code)
 
         # QA Write to dir
-        utilities.parse_code(finalized_code, "", snapshot_project_name)
+        game_path = utilities.parse_code(finalized_code, "", snapshot_project_name)
         utilities.take_project_info_snapshot(refined_requirement, generated_code, finalized_code, snapshot_project_name)
 
-    print(color.BOLD + color.PURPLE + "Completed!!! Run the code in the workspace." + color.END)
+    print(color.BOLD + color.PURPLE + "Completed!!! Running the game." + color.END)
+    utilities.run_game(game_path)
 
 if __name__ == "__main__":
     main()
