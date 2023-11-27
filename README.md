@@ -28,7 +28,7 @@ python src/main.py
 ### Generate source code from a checkpoint file
 
 usage:
-`usage: main.py [-h] [--skipPM] [--skipDev] [--noQA] [--snapshot-directory SNAPSHOT_DIRECTORY]`
+`usage: main.py [-h] [--skipPM] [--skipDev] [--skipQA] [--snapshot-directory SNAPSHOT_DIRECTORY]`
 
 example:
 
