@@ -57,14 +57,24 @@ def main():
 
     if args.skipQA:
         print("Not Using QA")
+
+        # only Dev
+        utilities.parse_code(generated_code, "", snapshot_project_name)   
+        utilities.take_project_info_snapshot(refined_requirement, generated_code, None, snapshot_project_name)
+
     else:
+        # Dev
+        utilities.parse_code(generated_code, "-dev", snapshot_project_name)
+        utilities.take_project_info_snapshot(refined_requirement, generated_code, finalized_code, snapshot_project_name)
+
         # QA GPT review code
         print(color.BOLD + color.PURPLE + "Reviewing code...\n" + color.END)
         finalized_code = qa_gpt.code_review(refined_requirement, generated_code)
         print(color.BOLD + color.BLUE + "Code review feedback:\n" + color.END + finalized_code)
 
-    utilities.parse_code(generated_code, snapshot_project_name)
-    utilities.take_project_info_snapshot(refined_requirement, generated_code, finalized_code, snapshot_project_name)
+        # QA
+        utilities.parse_code(finalized_code, "", snapshot_project_name)
+        utilities.take_project_info_snapshot(refined_requirement, generated_code, finalized_code, snapshot_project_name)
 
     print(color.BOLD + color.PURPLE + "Completed!!! Run the code in the workspace." + color.END)
 

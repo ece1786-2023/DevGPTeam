@@ -16,6 +16,7 @@ def call_openai_api_DEV(system_context, user_prompt, top_p, temperature=1, model
     response = client.chat.completions.create(
         model=model,
         #model="gpt-4-1106-preview",
+        #model="gpt-3.5-turbo-1106",
         messages=[
             {"role": "system", "content": system_context},
             {"role": "user", "content": user_prompt}
@@ -68,12 +69,14 @@ def get_project_name(code_string):
     
     return project_name
 
-def parse_code(code_string, project_name=None):
+def parse_code(code_string, project_name_suffix, project_name=None):
     # Get the directory of the main.py file
     main_file_dir = os.path.dirname(os.path.abspath(__file__))
 
     if not project_name:
         project_name = get_project_name(code_string)
+
+    project_name = project_name + project_name_suffix
 
     # Define the workspace path relative to the main.py file
     project_workspace_path = os.path.join(main_file_dir, f'../workspace/{project_name}')
@@ -89,15 +92,18 @@ def parse_code(code_string, project_name=None):
         parts = file_section.split("<FILE_END>")
         file_content = parts[0].strip()  # The file content (filename + code)
 
-        # Split each file content into filename and code
-        filename_and_code = file_content.split("```python\n", 1)
-        filename = filename_and_code[0].strip()
-        code = filename_and_code[1].strip("```\n").strip()
+        # Check if the section contains Python code
+        if "```python" in file_content:
+            # Split each file content into filename and code
+            filename_and_code = file_content.split("```python\n", 1)
+            filename = filename_and_code[0].strip()
+            code = filename_and_code[1].strip("```\n").strip()
 
-        # Write the code to a file in the project workspace directory
-        file_path = os.path.join(project_workspace_path, filename)
-        with open(file_path, 'w') as file:
-            file.write(code)
+            # Write the code to a file in the project workspace directory
+            file_path = os.path.join(project_workspace_path, filename)
+            with open(file_path, 'w') as file:
+                file.write(code)
+
 
 def take_project_info_snapshot(refine_requirements, developed_code, finalized_code, project_name=None):
     # Get the directory of the main.py file

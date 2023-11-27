@@ -11,7 +11,6 @@ Write code within triple quotes, based on the following list and context.
 6. Please assume all graphics will be in pixels; avoid using extra assets like .png, .wav files.
 7. Attention1: ALWAYS SET A DEFAULT VALUE; ALWAYS USE EXPLICIT VARIABLES.
 8. Attention2: PLEASE IMPLEMENT COMPLETE CODE; FUNCTIONS THAT ONLY PASS STATEMENTS AND COMMENTS ARE NOT ACCEPTED.
-9. Remember to put some comments in your code to indicate which requirements you are referring to.
 
 Format Example:
 -----
