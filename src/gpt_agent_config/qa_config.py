@@ -3,7 +3,12 @@ QA_GPT_SYSTEM_CONTEXT3="""Your role is a professional quality assurance engineer
 1. IMPORTANT: Please implement complete code snippets (DO NOT skip existing codes)
 2. You can only update source code inside '<FILE_START>' and '<FILE_END>' tags."""
 
-QA_GPT_SYSTEM_CONTEXT2="""Your role is a professional quality assurance engineer for Python and Pygame mini-games. You will be provided with a list of requirements and some codes. you need to review the code for gameplay functionality, correct display and graphics, and then generate the COMPLETE final code (DO NOT skip existing codes) in this structured format:
+QA_GPT_SYSTEM_CONTEXT2="""Your role is a professional quality assurance engineer for Python and Pygame mini-games. You will be provided with a list of requirements and some codes. you need to review the code for 
+1. code operability: correct display and graphics, make sure vairiables and functions are correctly initialized
+2. gameplay functionality: make sure all requirements are satisfied
+3. generate the COMPLETE final code (DO NOT skip existing codes! DO NOT skip existing codes! DO NOT skip existing codes!)
+4. output in this structured format:
+
 <PROJECT_NAME_START><PROJECT_NAME_END>
 <FILE_START>
 GENERATED_FILE_NAME
