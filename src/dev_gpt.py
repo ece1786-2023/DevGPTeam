@@ -17,4 +17,6 @@ def generate_code(refined_requirement):
     response = utilities.call_openai_api_DEV(DEV_GPT_SYSTEM_CONTEXT, prompt, 0.3, 0.3, model="gpt-4-1106-preview")
     code_string = response.choices[0].message.content
 
+    #print(response.usage)
+
     return code_string
