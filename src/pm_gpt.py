@@ -49,7 +49,7 @@ def refine_requirements(initial_requirement):
         {"role": "system", "content": PM_GPT_SYSTEM_CONTEXT},
         {"role": "user", "content": initial_requirement}
     ]
-    print(color.BOLD + color.GREEN + "user: " + color.END + initial_requirement)
+    # print(color.BOLD + color.GREEN + "user: " + color.END + initial_requirement)
     while True:
         response = utilities.call_openai_api_PM(messages, model="gpt-4-1106-preview")
         messages.append({"role": "assistant", "content": response})        
@@ -58,7 +58,8 @@ def refine_requirements(initial_requirement):
         if "<REQ_START>" in response:
             refined_requirement = extract_req(response)
             break
-        print(color.BOLD + color.YELLOW + "assistant: " + color.END + response)
+        print(color.BOLD + color.YELLOW + "assistant: " + color.END, end=' ')
+        utilities.print_message(response)
         
         # else, continue iteration
         user_input = input(color.BOLD + color.GREEN + "user: " + color.END)

@@ -39,10 +39,12 @@ def main():
     if refined_requirement and (args.skipPM or args.skipDev):
         print("Found project requirement from checkpoint file")
     else:
-        initial_requirement = input(color.BOLD + color.YELLOW + "Assistant: " + color.END + "Please enter your initial requirement: " )
+        print(color.BOLD + color.YELLOW + "assistant: " + color.END + "Please enter your initial requirement: " )
+        initial_requirement = input(color.BOLD + color.GREEN + "user: " + color.END)
         refined_requirement = pm_gpt.refine_requirements(initial_requirement)
 
-    print(color.BOLD + color.BLUE + "Finalized Requirements:\n" + color.END + refined_requirement)
+    print(color.BOLD + color.BLUE + "Finalized Requirements:\n" + color.END, end='')
+    utilities.print_message(refined_requirement)
 
     # Dev GPT generating code
     if generated_code and (args.skipDev):
@@ -51,28 +53,30 @@ def main():
         print(color.BOLD + color.PURPLE + "Generating code...\n" + color.END)
         generated_code = dev_gpt.generate_code(refined_requirement)
 
-    print(color.BOLD + color.BLUE + "Generated code:\n" + color.END + generated_code)
+    print(color.BOLD + color.BLUE + "Generated code:\n" + color.END, end='')
+    utilities.print_message(generated_code)
 
     finalized_code = None 
 
     if args.skipQA:
         print("Not Using QA")
 
-        # only Dev
+        # only Dev Write to dir
         utilities.parse_code(generated_code, "", snapshot_project_name)   
         utilities.take_project_info_snapshot(refined_requirement, generated_code, None, snapshot_project_name)
 
     else:
-        # Dev
+        # Dev Write to dir
         utilities.parse_code(generated_code, "-dev", snapshot_project_name)
         utilities.take_project_info_snapshot(refined_requirement, generated_code, finalized_code, snapshot_project_name)
 
         # QA GPT review code
         print(color.BOLD + color.PURPLE + "Reviewing code...\n" + color.END)
         finalized_code = qa_gpt.code_review(refined_requirement, generated_code)
-        print(color.BOLD + color.BLUE + "Code review feedback:\n" + color.END + finalized_code)
+        print(color.BOLD + color.BLUE + "Code review feedback:\n" + color.END, end='')
+        utilities.print_message(finalized_code)
 
-        # QA
+        # QA Write to dir
         utilities.parse_code(finalized_code, "", snapshot_project_name)
         utilities.take_project_info_snapshot(refined_requirement, generated_code, finalized_code, snapshot_project_name)
 

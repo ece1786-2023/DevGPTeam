@@ -1,6 +1,8 @@
 import http.client
 import json
 import os
+from rich.console import Console
+from rich.markdown import Markdown
 
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -82,6 +84,7 @@ def parse_code(code_string, project_name_suffix, project_name=None):
     project_workspace_path = os.path.join(main_file_dir, f'../workspace/{project_name}')
 
     # Ensure the project workspace directory exists
+    print("Creating workspace:" + project_workspace_path)
     os.makedirs(project_workspace_path, exist_ok=True)
 
     # Split the string by the file start delimiter
@@ -140,3 +143,8 @@ class color:
    BOLD = '\033[1m'
    UNDERLINE = '\033[4m'
    END = '\033[0m'
+
+def print_message(msg):
+    console = Console()
+    md = Markdown(msg)
+    console.print(md)
