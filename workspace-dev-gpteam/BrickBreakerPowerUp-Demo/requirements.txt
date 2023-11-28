@@ -1,4 +1,1 @@
-python-dotenv
-openai
 pygame
-rich
