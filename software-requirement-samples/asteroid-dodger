@@ -1,0 +1,14 @@
+GPT input: Create an Asteroid Dodger game. Players navigate a spaceship through an asteroid field, dodging asteroids of varying sizes and speeds
+
+Requirements:
+
+1. Game Initialization: Present a startup screen with the title "Asteroid Dodger" and options to start the game.
+2. Asteroid Field: Generate a field of asteroids of varying sizes and speeds that the player must navigate through. .Asteroids should have randomized trajectories and speeds, with larger asteroids moving slower and smaller ones moving faster.
+3. Progressive Difficulty: Gradually increase the density and speed of asteroids as the game progresses.
+4. Spaceship Movement: Enable smooth control for the spaceship to move in all directions within the game area.(e.g., arrow keys or WASD for movement).
+5. Scoring System: Score points for both dodging and destroying asteroids..Continuously display the player's current score on the screen.
+6. Survival Objective: Focus on surviving as long as possible while destroying asteroids.
+7. Collision: End the game if the spaceship collides with an asteroid.
+8. Lives and Health System: Players have a certain number of lives or a health bar that decreases with each asteroid collision.
+9. User Interface: The game has a user-friendly interface showing the score, lives, level, and any other relevant information.
+10. High Score Tracking: Record and display high scores.
