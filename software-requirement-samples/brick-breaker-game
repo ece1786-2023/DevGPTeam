@@ -11,4 +11,4 @@ Requirements:
 6. Game Over Condition: The game should end when either all bricks are broken (win) or the player loses all lives (lose).
 7. User Interface: The game should display the current score, number of lives, and any relevant instructions or buttons (e.g., start, restart).
 8. The movement speed of the ball and paddle should be adjusted to be within the limits of human reaction time, ensuring that the game remains challenging yet fair and playable.
-9. User Control: Players can initiate the game by either clicking the mouse or pressing a designated key on the keyboard, providing flexibility in starting the game based on their preference.
+9. User Control: Players can initiate the game by clicking the mouse or pressing a designated key on the keyboard.
