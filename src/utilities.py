@@ -3,6 +3,7 @@ import json
 import os
 from rich.console import Console
 from rich.markdown import Markdown
+import shutil
 
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -133,6 +134,10 @@ def take_project_info_snapshot(refine_requirements, developed_code, finalized_co
 
     with open(file_path, 'w') as file:
         json.dump(data, file, indent=4)
+
+def remove_directory(directory_path):
+    if os.path.exists(directory_path):
+        shutil.rmtree(directory_path)
 
 class color:
    PURPLE = '\033[95m'

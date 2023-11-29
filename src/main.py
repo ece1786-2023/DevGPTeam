@@ -1,6 +1,7 @@
 import sys
 import argparse
 import json
+import os
 
 import pm_gpt
 import dev_gpt
@@ -56,6 +57,10 @@ def main():
     print(color.BOLD + color.BLUE + "Generated code:\n" + color.END, end='')
     utilities.print_message(generated_code)
 
+    # write requirements as snapshot in case the program crash during the code generation 
+    os.makedirs("tmp-dir", exist_ok=True)
+    utilities.take_project_info_snapshot(refined_requirement, None, None, "tmp-dir")
+
     finalized_code = None 
     game_path = None
     if args.skipQA:
@@ -80,7 +85,10 @@ def main():
         game_path = utilities.parse_code(finalized_code, "", snapshot_project_name)
         utilities.take_project_info_snapshot(refined_requirement, generated_code, finalized_code, snapshot_project_name)
 
-    print(color.BOLD + color.PURPLE + "Completed!!! Running the game." + color.END)
+    # remove tmp directory
+    utilities.remove_directory("./workspace/tmp-dir")
+
+    print(color.BOLD + color.PURPLE + "Completed!!! Running the game." + color.END)   
     utilities.run_game(game_path)
 
 if __name__ == "__main__":
