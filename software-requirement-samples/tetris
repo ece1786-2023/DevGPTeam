@@ -1,0 +1,15 @@
+GPT input:
+Create a TETRIS game in python where players arrange falling blocks of pixels to form complete horizontal lines, which then disappear. The game is over when the stack of blocks reaches the top of the screen.
+
+Requirements:
+
+1. Game Initialization: Display a welcome screen with the title "Tetris" and options to start the game
+2. Tetrominoes: Introduce different shapes of tetrominoes (block formations) that fall from the top of the screen.
+3. Rotation and Movement: Enable the rotation (both clockwise and counterclockwise) and lateral movement of falling tetrominoes. Players should use keyboard inputs to move (left/right arrows), rotate (up arrow or spacebar), and speed up (down arrow) tetrominoes.
+4. Soft and Hard Drop: Implement both soft drop (speed up falling) and hard drop (instant drop) mechanics.
+5. Speed Adjustment: The falling speed of tetrominoes should increase progressively or based on the game level.
+6. Line Completion: When a horizontal line is fully filled with blocks, it should disappear and score points.
+7. Scoring System: Points are awarded for each line completed, with more points for multiple lines completed simultaneously. Show the current score and level on the screen during gameplay.
+8. Game Over Condition: The game ends when the tetrominoes stack up and reach the top of the screen.
+9. High Score Tracking: Keep track of high scores and display them at the end of each game.
+10. Restart Option: Provide an option to restart the game after a game over.
