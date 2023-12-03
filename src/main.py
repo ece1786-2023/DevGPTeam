@@ -40,7 +40,7 @@ def main():
     if refined_requirement and (args.skipPM or args.skipDev):
         print("Found project requirement from checkpoint file")
     else:
-        print(color.BOLD + color.YELLOW + "assistant: " + color.END + "Please enter your initial requirement: " )
+        print(color.BOLD + color.YELLOW + "assistant: " + color.END + "Please enter your initial requirement." )
         initial_requirement = input(color.BOLD + color.GREEN + "user: " + color.END)
         refined_requirement = pm_gpt.refine_requirements(initial_requirement)
 
