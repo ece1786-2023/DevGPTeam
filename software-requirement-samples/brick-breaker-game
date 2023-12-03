@@ -1,14 +1,15 @@
 GPT input:
-create a brick breaker game.
+Create a python green brick breaker game where the ball doubles in size and turns red for 5 seconds when it hits red bricks.
 
 Requirements:
 
-1. Brick Layout: The game must initialize with bricks arranged in a specific pattern (rows and columns) on the screen.
-2. Paddle Control: Players should be able to control the horizontal movement of a paddle using keyboard, mouse, or touch inputs.
-3. Ball Mechanics: A ball must bounce off walls, the paddle, and bricks, following proper physics for reflection angles.
-4. Brick Collision: When the ball collides with a brick, the brick should disappear, and the player's score should increase.
-5. Lives: The game should commence with several lives (the exact number can be predetermined or adjustable in settings). Each time the ball slips past the paddle and touches the bottom edge of the screen, the player loses one life.
-6. Game Over Condition: The game should end when either all bricks are broken (win) or the player loses all lives (lose).
-7. User Interface: The game should display the current score, number of lives, and any relevant instructions or buttons (e.g., start, restart).
-8. The movement speed of the ball and paddle should be adjusted to be within the limits of human reaction time, ensuring that the game remains challenging yet fair and playable.
-9. User Control: Players can initiate the game by clicking the mouse or pressing a designated key on the keyboard.
+1. Brick Layout: The game should start with bricks arranged in a specific pattern, consisting of rows and columns, on the screen. These bricks should be colored green and red.
+2. Paddle Control: Players must have the ability to control a paddle's horizontal movement using keyboard, mouse, or touch inputs.
+3. Ball Mechanics: The ball should bounce off walls, the paddle, and bricks, obeying realistic physics principles for reflection angles.
+4. Power-Ups: Power-ups should have a time limit.
+5. Brick Collision: When the ball collides with a brick, that brick should disappear, and the player’s score should increase.
+6. Lives: The game begins with a certain number of lives. Each time the ball passes the paddle and touches the bottom edge of the screen, the player loses a life.
+7. Game Over Condition: The game ends when all bricks are broken (winning condition) or the player loses all lives (losing condition).
+8. User Interface: The game interface should display the current score, the number of lives remaining, and any relevant instructions or buttons (e.g., 'Start', 'Restart').
+9. Ball and Paddle Speed: The movement speeds of the ball and paddle should be adjusted to match human reaction times, ensuring that the game remains challenging, fair, and playable.
+10. User Control: Players can start the game by clicking the mouse or pressing a designated key on the keyboard.
