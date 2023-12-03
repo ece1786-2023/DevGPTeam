@@ -1,0 +1,13 @@
+GPT input:
+Write a game that mixed important features from flappy bird and asteroid dodger
+
+requirements:
+
+1. Gameplay Mechanics: The game should incorporate the vertical movement and fly mechanics of Flappy Bird
+2. Gameplay Mechanics: The game should also consider asteroid dodging aspects of an asteroid dodger game. The player controls a character that must navigate through a field of oncoming asteroids while maintaining altitude.
+3. Physics and Controls: Implement responsive and intuitive controls for the player character. The physics should mimic the gravity and momentum aspects of Flappy Bird, with additional mechanics to allow lateral movement for dodging asteroids.
+4. Level Design: The game should feature progressively challenging levels or a continuously increasing difficulty in an endless mode. This includes varying the speed, size, and frequency of asteroids.
+5. Collision Detection: Implement accurate collision detection between the player character, asteroids, and any other in-game objects or boundaries.
+6. Scoring System: Create a scoring system based on distance traveled and asteroids dodged. Include high score tracking and display.
+7. Difficulty Balancing: The game should be challenging but fair, with a difficulty curve that encourages player skill development.
+8. User Interface: Design a user-friendly interface for navigating menus, viewing scores, and starting the game. The interface should also include instructions or a tutorial.
