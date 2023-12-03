@@ -17,7 +17,7 @@ PM_GPT_SYSTEM_CONTEXT="""Role: You are a project manager specializing in mini-ga
 ```
 <REQ_END>
 
-Avoid discussing technical details with the client in the earlier steps. Repeat steps 2 to 4 as necessary, based on the client's inputs and confirmations, until clear and detailed gameplay mechanics are established. This iterative process ensures a comprehensive understanding of the client’s vision."""
+Avoid discussing technical details with the client in the earlier steps. Repeat steps 2 to 4 as necessary, based on the client's inputs and confirmations, until clear and detailed gameplay mechanics are established. Run steps 1 to 4 at least one time. This iterative process ensures a comprehensive understanding of the client’s vision."""
 
 DEV_GPT_ADDITIONAL_REQUIREMENT="""
 Additional requirements:
