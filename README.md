@@ -1,6 +1,6 @@
 # Dev GPTeam: An end-to-end application to transform ideas into operable software
 
-Dev GPTeam CLI is a command-line application designed to streamline the software development process by leveraging the power of GPT models. This application allows users to input initial software requirements and uses GPT-powered interactions to refine requirements, generate source code.
+Dev GPTeam is a command-line application designed to streamline the software development process by leveraging the power of GPT models. This application allows users to input initial software requirements and uses GPT-powered interactions to refine requirements, generate source code.
 
 ## Features
 
@@ -27,7 +27,7 @@ Dev GPTeam CLI is a command-line application designed to streamline the software
 
 ### Prerequisites
 
-Before running Dev GPTeam CLI, make sure you have Python 3.9 or higher installed on your system. You can download it from [python.org](https://www.python.org/downloads/).
+Before running Dev GPTeam, make sure you have Python 3.9 or higher installed on your system. You can download it from [python.org](https://www.python.org/downloads/).
 
 You can also run the software inside [Anaconda](https://www.anaconda.com/download).
 
@@ -95,4 +95,4 @@ python src\main.py --skipPM --snapshot brick_breaker_game
 
 ### Configure GPT Agent Prompts
 
-Find the prompt configurations for PM GPT, Developer GPT, and QA GPT in the `src/gpt_agent_config`` folder.
+Find the prompt configurations for PM GPT, Developer GPT, and QA GPT in the `src/gpt_agent_config` folder.
