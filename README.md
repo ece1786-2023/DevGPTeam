@@ -54,7 +54,7 @@ pip install -r requirements.txt
 python src/main.py
 ```
 
-### Simple Demo/Example
+## Simple Demo/Example
 
 Step 1: Display greeting message and receive sample user input.
 <br/><img src="assets/step1.png">
