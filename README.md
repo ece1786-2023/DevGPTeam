@@ -1,6 +1,6 @@
-# Dev GPTeam CLI
+# Dev GPTeam
 
-Dev GPTeam CLI is a command-line application designed to streamline the software development process by leveraging the power of GPT models. This application allows users to input initial software requirements and uses GPT-powered interactions to refine requirements, generate source code, and validate the code.
+Dev GPTeam CLI is a command-line application designed to streamline the software development process by leveraging the power of GPT models. This application allows users to input initial software requirements and uses GPT-powered interactions to refine requirements, generate source code.
 
 ## Features
 
@@ -8,6 +8,16 @@ Dev GPTeam CLI is a command-line application designed to streamline the software
 - Source code generation with simulated Dev GPT model.
 - Code validation and quality checks with simulated QA GPT model.
 - Simple command-line interface for ease of use.
+- Provide a checkpoint/snapshot feature so that users can restart from any stage. For example, they can regenerate source code from the latest requirements without going through PM GPT again.
+
+## Game generation demo
+
+<img src="assets/brick-breaker.gif" width="200" />
+<img src="assets/snake.gif" width="200" />
+<img src="assets/2048.gif" width="200" />
+<img src="assets/flappy-bird-and-astreoid-dodger.gif" width="200" />
+<img src="assets/flappy-bird.gif" width="200" />
+<img src="assets/tetris.gif" width="200" />
 
 ## Getting Started
 
