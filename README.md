@@ -85,7 +85,10 @@ Step 8: Code generation is completed, and the software is ready to run.
 ### Generate source code from a checkpoint/snapshot file
 
 usage:
-`usage: main.py [-h] [--skipPM] [--skipDev] [--skipQA] [--snapshot-directory SNAPSHOT_DIRECTORY]`
+
+```
+main.py [-h] [--skipPM] [--skipDev] [--skipQA] [--snapshot-directory SNAPSHOT_DIRECTORY]
+```
 
 example:
 
