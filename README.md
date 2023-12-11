@@ -12,12 +12,16 @@ Dev GPTeam CLI is a command-line application designed to streamline the software
 
 ## Game generation demo
 
-<img src="assets/brick-breaker.gif" width="200" />
-<img src="assets/snake.gif" width="200" />
-<img src="assets/2048.gif" width="200" />
-<img src="assets/flappy-bird-and-astreoid-dodger.gif" width="200" />
-<img src="assets/flappy-bird.gif" width="200" />
-<img src="assets/tetris.gif" width="200" />
+<div>
+    <img src="assets/brick-breaker.gif" width="200" />
+    <img src="assets/snake.gif" width="200" />
+    <img src="assets/flappy-bird-and-astreoid-dodger.gif" width="200" />
+</div>
+<div>
+    <img src="assets/2048.gif" width="200" />
+    <img src="assets/flappy-bird.gif" width="200" />
+    <img src="assets/tetris.gif" width="200" />
+</div>
 
 ## Getting Started
 
